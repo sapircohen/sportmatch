@@ -16,7 +16,6 @@ export default class FormOne extends React.Component{
             <Form style={{textAlign:'right'}} dir="rtl">
                 <Input setInput={(e)=>this.setState({userName:e.target.value})} title="שם משתמש" type="text" placeholder="הכנס שם משתמש" />
                 <Input setInput={(e)=>this.setState({password:e.target.value})} title="סיסמה" type="password" placeholder="הכנס סיסמה.." />
-
                 <ButtonF login={this.validate} text="התחברות"/>
             </Form>
         );
