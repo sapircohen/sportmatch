@@ -6,6 +6,7 @@ function App() {
   return (
     <div>
       <FlipC/>
+      <p>Lidor</p>
     </div>
   );
 }
