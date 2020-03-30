@@ -7,6 +7,7 @@ function App() {
     <div>
       <FlipC/>
       <p>Lidor</p>
+      dsflsdnfkjsndksdfn
     </div>
   );
 }
