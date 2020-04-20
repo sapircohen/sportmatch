@@ -37,8 +37,10 @@ export default class BranchMatchesRequest extends Component {
 
     render() {
         const trainerlist = this.state.TrainerData.map(trainer =>
-            <div class="TrainerFrame">
+            <div className="TrainerFrame" key={trainer.TrainerCode}>
             <p>שם פרטי: {trainer.FirstName}</p> 
+            <p>שם משפחה: {trainer.LastName}</p>
+            <p>מחיר מבוקש לשעה :{trainer.PricePerHour} </p>
 
             </div>
                        
@@ -46,8 +48,8 @@ export default class BranchMatchesRequest extends Component {
 
         return (
                 <Form id="pForm" style={{textAlign:'right'}} dir="rtl">
+                <h3>מאמנים מתאימים:</h3>
                 {trainerlist}
-                <h3>12334</h3>
                 </Form>
 
         )

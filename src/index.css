@@ -78,6 +78,11 @@ html, .App, #root, .auth-wrapper {
   color: #167bff;
 }
 
+.TrainerFrame{
+  border-style: solid;
+  text-align:right;
+}
+
 
 /* body {
   margin: 0;
