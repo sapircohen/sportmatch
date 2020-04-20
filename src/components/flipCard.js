@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactCardFlip from 'react-card-flip';
-import FormOne from './FormOne';
+import FormOne from '../pages/Login';
 
 
 export default class FlipC extends React.Component {
@@ -21,13 +21,13 @@ export default class FlipC extends React.Component {
       return (
         <ReactCardFlip containerStyle={{direction:'rtl',textAlign:'right'}} isFlipped={this.state.isFlipped} flipDirection="vertical">
           <div>
-            This is the front of the card.
-            <button onClick={this.handleClick}>הכשרה</button>
+            {this.props.front}
+            <button onClick={this.handleClick}>{this.props.buttonFront}</button>
           </div>
    
           <div>
-            <FormOne/>
-            <button onClick={this.handleClick}>Click to flip</button>
+            {this.props.back}
+            <button onClick={this.handleClick}>{this.props.buttonBack}</button>
           </div>
         </ReactCardFlip>
       )

@@ -3,9 +3,9 @@ import {Form} from 'react-bootstrap';
 
 const Input = (props)=>{
     return(
-        <Form.Group dir="rtl">
+        <Form.Group dir="rtl" >
             <Form.Label>{props.title}</Form.Label>
-            <Form.Control onChange={props.setInput} type={props.type} placeholder={props.placeholder} />
+            <Form.Control required={props.req} onChange={props.setInput} type={props.type} placeholder={props.placeholder} />
             <Form.Text className="text-muted">
             {props.extrainfo}
             </Form.Text>

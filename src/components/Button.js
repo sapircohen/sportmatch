@@ -3,7 +3,7 @@ import {Button} from 'react-bootstrap';
 
 const ButtonF = (props)=>{
     return(
-        <Button onClick={props.login} variant="outline-info">{props.text}</Button>
+        <Button type={props.type} onClick={props.action} variant="outline-info">{props.text}</Button>
     );
 }
 
