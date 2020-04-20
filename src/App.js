@@ -27,7 +27,7 @@ function App() {
             <Route path="/RequestForReplacement" component={RequestForReplacement} />
             <Route path="/BranchIndex" component={BranchIndex} />
             <Route path="/BranchParameters" component={BranchParameters} />
-            
+            <Route exact path='/' component={Login} />
           </Switch>
         </div>
       </div>
