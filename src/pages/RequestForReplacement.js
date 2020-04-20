@@ -105,6 +105,7 @@ export default class RequestForReplacement extends Component {
 
     successPostRequest=(data)=> {
         swal("good job");
+        this.props.history.push("//BranchMatches");
     }
 
     errorPostRequest=(err)=> {

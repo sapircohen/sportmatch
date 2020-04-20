@@ -8,6 +8,7 @@ import RequestForReplacement from './pages/RequestForReplacement'
 import AdminParameters from './pages/AdminParameres';
 import BranchParameters from './pages/BranchParameter';
 import AA from './pages/BranchRegistration copy';
+import BranchMatches from './pages/BranchMatchesRequest';
 
 
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
@@ -23,10 +24,11 @@ function App() {
           <Switch>
             <Route exact path='/' component={Login} />
             <Route path="/TrainerReg" component={TrainerReg} />
-            <Route path="/BranchReg" component={AA} />
+            <Route path="/BranchReg" component={BranchReg} />
             <Route path="/RequestForReplacement" component={RequestForReplacement} />
             <Route path="/BranchIndex" component={BranchIndex} />
             <Route path="/BranchParameters" component={BranchParameters} />
+            <Route path="/BranchMatches" component={BranchMatches} />
             <Route exact path='/' component={Login} />
           </Switch>
         </div>

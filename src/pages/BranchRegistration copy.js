@@ -27,6 +27,10 @@ export default class BranchRegistration extends Component {
         numOfParameters : 0,
         parametersCode : [],
         numOfLinkes:0,
+        FacebookPath:'',
+        InstagramPath:'',
+        LinkedInPath:'',
+        WebsitePath:''
     }
 
 
@@ -216,7 +220,7 @@ export default class BranchRegistration extends Component {
         {
             swal("in for")
             //let id = document.getElementById(i).id;
-            let path = document.getElementById(i).value;
+            let path = document.getElementById(`"${i}"`).value;
             console.log(path);
         }
     }
