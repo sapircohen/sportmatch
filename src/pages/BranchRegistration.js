@@ -174,6 +174,7 @@ export default class BranchRegistration extends Component {
          swal("success");
         console.log(data);
         this.setState({BranchCodeFromDB : data.BranchCode})
+        localStorage["userDetails"] = JSON.stringify(data);
         this.insertBranchParameters();
 
     }

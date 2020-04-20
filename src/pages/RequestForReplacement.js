@@ -13,7 +13,7 @@ export default class RequestForReplacement extends Component {
     state={
         PublishDateTime: new Date().toISOString(),
         ContactName:'',
-        BrnachCode: JSON.parse(localStorage["userDetails"]).Code,
+        BrnachCode: JSON.parse(localStorage["userDetails"]).BranchCode,
         ClassTypeCode:'',
         City:'',
         FromHour:'',

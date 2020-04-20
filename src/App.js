@@ -23,7 +23,7 @@ function App() {
           <Switch>
             <Route exact path='/' component={Login} />
             <Route path="/TrainerReg" component={TrainerReg} />
-            <Route path="/BranchReg" component={BranchReg} />
+            <Route path="/BranchReg" component={AA} />
             <Route path="/RequestForReplacement" component={RequestForReplacement} />
             <Route path="/BranchIndex" component={BranchIndex} />
             <Route path="/BranchParameters" component={BranchParameters} />

@@ -76,7 +76,7 @@ errorGetUser=(err)=>{
 
  checkType=(data) =>{
     let userDetail = {
-        Code: data[0].Code,
+        BranchCode: data[0].Code,
         Email: data[0].Email,
         Type: data[0].Type
     }
