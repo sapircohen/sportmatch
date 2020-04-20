@@ -16,8 +16,7 @@ import './App.css';
 import AdminParameres from './pages/AdminParameres';
 
 function App() {
-  return (<Router>
-
+  return (
     <div className="App">
       <div className="auth-wrapper">
         <div className="auth-inner">
@@ -33,7 +32,7 @@ function App() {
           </Switch>
         </div>
       </div>
-    </div></Router>
+    </div>
   );
 }
 
