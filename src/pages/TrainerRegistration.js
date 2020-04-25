@@ -144,11 +144,11 @@ export default class TrainerRegistration extends Component {
             swal('הוזן תאריך לידה לא תקין');
             return false
         }
-        if(this.state.Photo ==='')
-        {
-            swal('בחר תמונה');
-            return false
-        }
+        // if(this.state.Photo ==='')
+        // {
+        //     swal('בחר תמונה');
+        //     return false
+        // }
 
         if(this.state.Gender ==='')
         {

@@ -11,8 +11,10 @@ import RangeSlider from 'react-bootstrap-range-slider';
 
 export default class BranchParameter extends Component {
     state={
-        BranchCode: JSON.parse(localStorage["userDetails"]).Code,
+        BranchCode: JSON.parse(localStorage["userDetails"]).BranchCode,
         numParameters:0,
+        arrParameters:[],
+        arrBranchParameters:[],
         parametersWeigt:[],
         parametersCode: []
     }
@@ -27,47 +29,61 @@ export default class BranchParameter extends Component {
           return false;
       }
     successGetParameters=(data)=>{
-            console.log(data);
-            console.log("im in success");
-            console.log(data[0].Pname);
-            console.log("branchCode: " + this.state.BranchCode.value);
-            let arrForm = "";
-            let placeholder = "";
-            let counter=0;
-            for (let k in data) {
-                placeholder = ` הכנס משקל ${data[k].Pname}`;
-                arrForm += `<div class="form-group" align="right">
-                                <label for="${data[k].Pcode}">${data[k].Pname}</label>
-                                <input type="number" class="form-control" id="${data[k].Pcode}" placeholder="${placeholder}" style="direction: rtl;" required min="0" max="100">
-                            </div>`;
-
-                counter += 1;
-                let param = this.state.parametersCode;
-                param.push(data[k].Pcode);
-                this.setState({parametersCode:param})
-                console.log("input id: " + data[k].Pcode);
-            }
-            
-            this.setState({numParameters:counter});
-            $('#param').append(arrForm);  
+        this.setState({numParameters:data.length, arrParameters:data});
+        console.log(data.length);
+        ajaxCall("GET", "http://proj.ruppin.ac.il/igroup7/proj/api/BranchParameter/GetBranchParameter", "branchCode=" +this.state.BranchCode, this.successGetBranchParameter, this.errorGetBranchParameter);
     }
 
     errorGetParameters=(err)=>{
         console.log(err);
     }
+
+    successGetBranchParameter=(data)=>{
+        this.setState({arrBranchParameters:data});
+        this.BuildParametersForms();
+    }
+
+    errorGetBranchParameter=(err)=>{
+        console.log(err);
+    }
+
+     BuildParametersForms=()=> {
+        let arrForm = "";
+        let placeholder = "";
+        let l = 0;
+        let index=0;
+        let arrCode=[];
+        let param = this.state.arrParameters;
+        console.log("arrBranchParameters :" + JSON.stringify(this.state.arrBranchParameters));
+        console.log("arrParameters :" + JSON.stringify(this.state.arrParameters));
+
+        for (l in this.state.arrBranchParameters) 
+        {
+            placeholder = `משקל נוכחי : ${this.state.arrBranchParameters[l].ParameterWeight}`;
+            arrForm += `<div class="form-group" align="right">
+                            <label for="${param[l].Pcode}">${param[l].Pname}</label>
+                            <Input type="number" class="form-control" id="${param[l].Pcode}" placeholder="${placeholder}" style="direction: rtl;" required min="0" max="100">
+                        </div>`;
+
+            index += 1;
+            arrCode[index] = param[l].Pcode;
+            console.log("input id: " + this.state.arrParameters[l].Pcode);
+        }
+        this.setState({parametersCode:arrCode});
+        $('#param').append(arrForm);
+    }
     
     SaveParameter=()=> {
+        let parameters=[];
+        let param = this.state.parametersWeigt;
         console.log("numParameters: " + this.state.numParameters);
         console.log("in save");
         for (let i = 1; i <= this.state.numParameters; i++) {
             //insert the user value to arr
-            let p = document.getElementById(this.state.parametersCode[i]).value;
-            //parametersWeigt[i] = document.getElementById(parametersCode[i]).value;
-            let param = this.state.parametersWeigt;
-            param.push(p);
-            this.setState({parametersWeigt:param})
+            param[i] = document.getElementById(this.state.parametersCode[i]).value;
             console.log(this.state.parametersWeigt[i]);
         }
+        this.setState({parametersWeigt:param});
         if (this.checkValid() === true) {
             for (let j = 1; j <= this.state.numParameters; j++) {
                 let branchParameter = {
@@ -76,21 +92,22 @@ export default class BranchParameter extends Component {
                     ParameterWeight: this.state.parametersWeigt[j]
                 }
                 console.log(JSON.stringify(branchParameter));
-                ajaxCall("POST", "http://proj.ruppin.ac.il/igroup7/proj/api/BranchParameter", JSON.stringify(branchParameter), this.successInsertBranchParameter, this.errorInsertBranchParameter);
+                parameters.push(branchParameter);
 
             }
-
+            ajaxCall("PUT", "http://proj.ruppin.ac.il/igroup7/proj/api/BranchParameter", JSON.stringify(parameters), this.successUpdateBranchParameter, this.errorUpdatetBranchParameter);
             console.log("good!");
         }
 
         return false;
     }
-    successInsertBranchParameter=(data)=> {
+    successUpdateBranchParameter=(data)=> {
         console.log(data);
         swal("Good job!", "success", "success");
+        this.props.history.push("/BranchIndex");
     }
 
-    errorInsertBranchParameter=(err)=> {
+    errorUpdatetBranchParameter=(err)=> {
         console.log(err);
     }
 

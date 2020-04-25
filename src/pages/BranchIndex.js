@@ -10,7 +10,7 @@ class BranchIndex extends Component {
     }
     ToParameter=()=> {
         console.log(" in ToParameter");
-        //this.props.history.push("/BranchParameters");
+        this.props.history.push("/BranchParameters");
 
     }
 
