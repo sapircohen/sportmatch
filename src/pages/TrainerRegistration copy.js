@@ -11,6 +11,7 @@ import {ajaxCall} from '../scripts/ajaxCall';
 import $ from 'jquery';
 import FileUpload from '../components/fileUpload';
 import ReactCardFlip from 'react-card-flip';
+import QualCom from '../components/TrainerQualification';
 
 export default class TrainerRegistration extends Component {
     state={
@@ -475,23 +476,7 @@ export default class TrainerRegistration extends Component {
                 <Input setInput={(e)=>this.setState({AboutMe:e.target.value})} title="קצת עליי" type="text" placeholder="הכנס תיאור" />
                 
                 <p>הכשרות</p>
-                <ReactCardFlip isFlipped={this.state.isFlippedQual}>
-                
-                <div>
-                    {qualList}
-                </div>
-                
-                <div id="qual">
-                    <h3>פרטי הכשרה {this.state.qualName}</h3>
-                    <Input setInput={(e)=>this.setState({QualDate: e.target.value})} title="תאריך הכשרה" type="date" />
-                    <p>קהל יעד</p>
-                    {popList}<br/>
-                    <p>תעודות</p>
-                    <FileUpload onFileUploaded={(imagePath) => this.imageUploaded(imagePath)}/>
-                    <ButtonF action={()=>this.confirmQual()}  className="btn btn-primary btn-block" text="אישור"/><br/>
-                    </div>
-
-                </ReactCardFlip>
+                <QualCom/>
                     
                     <div>
                     <label>שפות</label><br/>

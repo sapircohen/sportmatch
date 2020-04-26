@@ -4,16 +4,16 @@ import Login from './pages/Login';
 import TrainerReg from './pages/TrainerRegistration';
 import BranchReg from './pages/BranchRegistration';
 import BranchIndex from './pages/BranchIndex';
-import RequestForReplacement from './pages/RequestForReplacement'
+import RR from './pages/RequestForReplacementOld'
 import AdminParameters from './pages/AdminParameres';
 import BranchParameters from './pages/BranchParameter';
 import AA from './pages/BranchRegistration copy';
 import BranchMatches from './pages/BranchMatchesRequest';
-
-
+import RequestForReplacement from './pages/RequestForReplacement'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import AdminParameres from './pages/AdminParameres';
+import Test from './pages/TrainerRegistration copy';
 
 function App() {
   return (

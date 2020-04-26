@@ -116,12 +116,12 @@ branchRegistration=()=>{
 
               <div className="row">
                 <div className="form-group" style={{float:'right',width: "50%",padding: "5px"}}>
-                <RI action={this.trainerRegistration} image={'images/trainer.jpg'}width="120" height="120" size="8"/>
+                <RI action={this.trainerRegistration} image={'images/trainer.jpg'}width="120" height="120" size="8" color="#66A5CC"/>
                     <label>הרשם כמאמן</label>
                 </div>
 
                 <div className="form-group" style={{float:'right',width: "50%",padding: "5px"}} >
-                <RI action={this.branchRegistration} image={'images/gym.jpg'} width="120" height="120" size="8"/>
+                <RI action={this.branchRegistration} image={'images/gym.jpg'} width="120" height="120" size="8" color="#66A5CC"/>
                     <label>הרשם כמועדון</label>
                 </div>
                 </div>

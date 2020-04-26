@@ -7,6 +7,7 @@ import swal from 'sweetalert';
 import $ from 'jquery';
 import RI from '../components/RoundedImages';
 import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
+import ReactCardFlip from 'react-card-flip';
 
 
 export default class BranchRegistration extends Component {
@@ -26,6 +27,7 @@ export default class BranchRegistration extends Component {
         DataLinks: [],
         numOfParameters : 0,
         parametersCode : [],
+        isFlippedLink:false,
     }
 
 
@@ -206,9 +208,11 @@ export default class BranchRegistration extends Component {
     }
 
     render() {
-        const areasList = this.state.DataArea.map(area => <option key = {area.AreaCode} value = {area.AreaCode}>{area.AreaName} </option> ) 
-        const copmaniesList = this.state.DataCompany.map(company => <option key = {company.CompanyNo} value = {company.CompanyNo}>{company.Name} </option> )
-        const linksList = this.state.DataLinks.map(link => <RI key={link.LinkCode} image={`images/${link.LinkName}.png`} width="60" height="60" size="8"/>)
+        //const areasList = this.state.DataArea.map(area => <option key = {area.AreaCode} value = {area.AreaCode}>{area.AreaName} </option> ) 
+        const areasList = this.state.DataArea.map(val => <button onClick={(e)=>this.setState({City:val.AreaCode})} style={{margin:'2px', backgroundColor: this.state.City===(val.AreaCode) ? 'lightblue': ''}} value = {val.AreaCode} key = {val.AreaCode}>{val.AreaName} </button> )
+        //const copmaniesList = this.state.DataCompany.map(company => <option key = {company.CompanyNo} value = {company.CompanyNo}>{company.Name} </option> )
+        const copmaniesList = this.state.DataCompany.map(val => <button onClick={(e)=>this.setState({Company:val.CompanyNo})} style={{margin:'2px', backgroundColor: this.state.Company===(val.CompanyNo) ? 'lightblue': ''}} value = {val.CompanyNo} key = {val.CompanyNo}>{val.Name} </button> )
+        const linksList = this.state.DataLinks.map(link => <RI key={link.LinkCode} action={(e)=>this.setState({isFlippedLink:true})} image={`images/${link.LinkName}.png`} width="60" height="60" size="8" color="#66A5CC"/>)
 
         return (
             <div>
@@ -218,17 +222,19 @@ export default class BranchRegistration extends Component {
 
                 <Input setInput={(e)=>this.setState({Password:e.target.value})} title="סיסמה" type="password" placeholder="הכנס סיסמה" />
 
-                <select  id='areacode' onChange={(e)=>this.setState({City:e.target.value})}>
-                <option value =''>בחר עיר</option>
-                {areasList}
-                </select>
+            <div>
+            <p>בחר עיר</p>
+            {areasList}
+            </div>
+                
 
                 <Input setInput={(e)=>this.setState({BranchName:e.target.value})} title="שם הסניף" type="text" className="form-control" placeholder="הכנס שם סניף" />
                 
-                <select  id='companyno' onChange={(e)=>this.setState({Company:e.target.value})}>
-                <option value =''>בחר חברה</option>
+            <div>
+                <p>בחר חברה</p>
                 {copmaniesList}
-                </select>
+            </div>
+                
                 
                 <Input setInput={(e)=>this.setState({Address:e.target.value})} title="כתובת הסניף" type="text" className="form-control" placeholder="הכנס כתובת סניף" />
                
@@ -236,10 +242,19 @@ export default class BranchRegistration extends Component {
                 
                 <Input setInput={(e)=>this.setState({Description:e.target.value})} title="תיאור" type="text" className="form-control" placeholder="הכנס תיאור" />
                 
-                <p>קישורים</p>
-                <Form.Row>
-                {linksList}
-                </Form.Row><br/>
+                <label>קישורים</label><br/>
+                <ReactCardFlip isFlipped={this.state.isFlippedLink}>
+                <div>
+                    <Form.Row>
+                    {linksList}
+                </Form.Row>
+                </div>
+                <div>
+                    <Input type="text" placeholder="הכנס כתובת" />
+                    <ButtonF  className="btn btn-primary btn-block" action={(e)=>this.setState({isFlippedLink:false})} text="אישור"/><br/>
+                </div>
+
+                </ReactCardFlip><br/>
                
                 <button type="submit" className="btn btn-primary btn-block" onClick={this.validate}>סיום</button>
                 </Form>

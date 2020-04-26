@@ -135,10 +135,11 @@ export default class RequestForReplacement extends Component {
     }
 
     render() {
-        const qualList = this.state.DataQual.map(val => <button onClick={(e)=>this.setState({ClassTypeCode:val.TypeCode})} style={{margin:'2px', backgroundColor: this.state.ClassTypeCode===(val.TypeCode) ? 'lightblue': ''}} value = {val.TypeCode} key = {val.TypeCode}>{val.TypeName} </button> )
-        const diffList = this.state.DataDiffLevel.map(val => <button onClick={(e)=>this.setState({DifficultyLevelCode:val.LevelCode})} style={{margin:'2px', backgroundColor: this.state.DifficultyLevelCode===(val.LevelCode) ? 'lightblue': ''}} value = {val.LevelCode} key = {val.LevelCode}>{val.LevelName} </button> )
-        const langList = this.state.DataLang.map(val => <button onClick={(e)=>this.setState({LanguageCode:val.LanCode})} style={{margin:'2px', backgroundColor: this.state.LanguageCode===(val.LanCode) ? 'lightblue': ''}} value = {val.LanCode} key = {val.LanCode}>{val.LanName} </button> )
-        const popList = this.state.DataPop.map(val => <button onClick={(e)=>this.setState({PopulationCode:val.Code})} style={{margin:'2px', backgroundColor: this.state.PopulationCode===(val.Code) ? 'lightblue': ''}} value = {val.Code} key = {val.Code}>{val.PName} </button> )
+        const qualList = this.state.DataQual.map(val => <option key={val.TypeCode} value = {val.TypeCode}>{val.TypeName} </option> )
+        const diffList = this.state.DataDiffLevel.map(val => <option key = {val.LevelCode} value = {val.LevelCode}>{val.LevelName} </option> )
+        const langList = this.state.DataLang.map(val => <option key = {val.LanCode} value = {val.LanCode}>{val.LanName} </option> )
+        const popList = this.state.DataPop.map(val => <option key = {val.Code} value = {val.Code}>{val.PName} </option> )
+
         return (
                 <Form id="pForm" style={{textAlign:'right'}} dir="rtl" >
                 <h3>הודעת החלפה</h3>
@@ -146,8 +147,11 @@ export default class RequestForReplacement extends Component {
                 <Input req={true} setInput={(e)=>this.setState({ContactName:e.target.value})} title="שם איש קשר" type="text" placeholder="הכנס שם איש קשר" />
                 
                 <div>
-                <p>סוג שיעור</p>
+                <label>סוג שיעור</label><br/>
+                <select required id='classn' onChange={(e)=>this.setState({ClassTypeCode:e.target.value})}>
+                <option value =''>בחר סוג שיעור</option>"
                 {qualList}
+                </select>
                 </div>
 
                 <Input req={true} setInput={(e)=>this.setState({FromHour:e.target.value})} title="משעה" type="time"  min="00:00" max="23:00" />
@@ -161,20 +165,29 @@ export default class RequestForReplacement extends Component {
                 <Input setInput={(e)=>this.setState({Comments:e.target.value})} title="הערות נוספות" type="text" placeholder="הכנס הערות" />
 
                 <div>
-                <p>רמת קושי</p>
+                <label>רמת קושי</label><br/>
+                <select required id='dlevel' onChange={(e)=>this.setState({DifficultyLevelCode:e.target.value})}>
+                <option value =''>בחר רמת קושי</option>
                 {diffList}
+                </select>
                 </div>
 
                 <Input setInput={(e)=>this.setState({MaxPrice:e.target.value})} title="מחיר לשעה" type="number" placeholder="הכנס מחיר לשעה" min="0"/>
 
                 <div>
-                <p>שפת השיעור</p>
+                <label>שפת השיעור</label><br/>
+                <select required id='lang' onChange={(e)=>this.setState({LanguageCode:e.target.value})}>
+                <option value =''>בחר שפה</option>
                 {langList}
+                </select>
                 </div>
 
                 <div>
-                <p>אוכלוסיית יעד</p>
+                <label>אוכלוסיית יעד</label><br/>
+                <select required id='pop' onChange={(e)=>this.setState({PopulationCode:e.target.value})}>
+                <option value =''>בחר אוכלוסיית יעד</option>
                 {popList}
+                </select>
                 </div><br/>
 
 

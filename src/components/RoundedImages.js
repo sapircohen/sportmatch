@@ -6,7 +6,7 @@ const RoundedImg = (props)=>{
       <div onClick={props.action}>
         <RI 
         image={props.image}
-        roundedColor="#66A5CC"
+        roundedColor={props.color}
           imageWidth={props.width}
           imageHeight={props.height}
           roundedSize={props.size}
@@ -17,3 +17,4 @@ const RoundedImg = (props)=>{
 
 export default RoundedImg;
 
+//"#66A5CC"
